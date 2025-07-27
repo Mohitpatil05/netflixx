@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Video from 'react-native-video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { styles } from '../styles';
+import { styles } from '../../screens/Home/styles';
 
 export default function HeroSection({ heroMovie, isPlaying, setIsPlaying, loading, setLoading }) {
     if (!heroMovie) return null;
@@ -14,7 +14,7 @@ export default function HeroSection({ heroMovie, isPlaying, setIsPlaying, loadin
             {isPlaying ? (
                 <View style={styles.heroVideoContainer}>
                     <Video
-                        source={require('../../../assets/videos/trailer.mp4')}
+                        source={require('../../assets/videos/trailer.mp4')}
                         style={styles.heroVideo}
                         resizeMode="cover"
                         paused={!isPlaying}
@@ -25,7 +25,7 @@ export default function HeroSection({ heroMovie, isPlaying, setIsPlaying, loadin
                     <View style={styles.heroButtonWrapper}>
                         <TouchableOpacity
                             style={styles.pauseButton}
-                            onPress={() => setIsPlaying(false)}
+                            onPress={() => { setLoading(false); setIsPlaying(false) }}
                         >
                             <Ionicons name="pause" size={20} color="#000" />
                             <Text style={styles.buttonText}>Pause</Text>
@@ -42,7 +42,7 @@ export default function HeroSection({ heroMovie, isPlaying, setIsPlaying, loadin
                 >
                     {loading && (
                         <FastImage
-                            source={require('../../../assets/images/logo.png')}
+                            source={require('../../assets/images/logo.png')}
                             style={styles.heroLogoImage}
                             resizeMode={FastImage.resizeMode.contain}
                         />

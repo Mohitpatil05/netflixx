@@ -1,9 +1,10 @@
 // src/screens/Home/components/MovieRow.js
 import React from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import Card from '../../../components/Card/Card';
-import Colors from '../../../constants/Colors';
-import { styles } from '../styles';
+import Card from '../Card/Card';
+import Colors from '../../constants/Colors';
+import { styles } from '../../screens/Home/styles';
+
 
 export default function MovieRow({
     row,
@@ -26,7 +27,7 @@ export default function MovieRow({
                         item={item}
                         isTop10={row.type === 'top_10'}
                         rank={index + 1}
-                        onPlayPress={() => setPlayingVideoUrl(require('../../../assets/videos/trailer.mp4'))}
+                        onPlayPress={() => setPlayingVideoUrl(require('../../assets/videos/trailer.mp4'))}
                     />
                 }
                 keyExtractor={(item) => item.id}

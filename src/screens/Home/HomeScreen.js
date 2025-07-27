@@ -5,9 +5,9 @@ import { observer } from 'mobx-react-lite';
 import { movieStore } from '../../store/movieStore';
 import { userStore } from '../../store/userStore';
 import Header from '../../components/Header/Header';
-import HeroSection from './components/HeroSection';
-import MovieRow from './components/MovieRow';
-import MovieGrid from './components/MovieGrid';
+import HeroSection from '../../components/HomeSections/HeroSection';
+import MovieRow from '../../components/HomeSections/MovieRow';
+import MovieGrid from '../../components/HomeSections/MovieGrid';
 import { styles } from './styles';
 
 export default observer(function HomeScreen({ navigation }) {

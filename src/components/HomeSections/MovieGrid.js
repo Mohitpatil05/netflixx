@@ -2,15 +2,15 @@
 import React from 'react';
 import { View, FlatList, Text, ImageBackground, TouchableOpacity, ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import Colors from '../../../constants/Colors';
-import { styles } from '../styles';
+import Colors from '../../constants/Colors';
+import { styles } from '../../screens/Home/styles';
 
 export default function MovieGrid({ movies, loading, onLoadMore, heroLoading, setHeroLoading }) {
     const renderGridItem = ({ item }) => (
         <TouchableOpacity style={styles.gridItem}>
             {heroLoading && (
                 <FastImage
-                    source={require('../../../assets/images/logo.png')}
+                    source={require('../../assets/images/logo.png')}
                     style={styles.heroLogoImage}
                     resizeMode={FastImage.resizeMode.contain}
                 />
