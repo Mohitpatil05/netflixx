@@ -58,7 +58,9 @@ export default observer(function Header({ onLogout }) {
             {/* Right: Profile Icon */}
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 {/* Search Icon */}
-
+                <TouchableOpacity style={{ marginRight: 10 }}>
+                    <Ionicons name="search" size={24} color="#fff" />
+                </TouchableOpacity>
 
                 {/* Profile Icon */}
                 <TouchableOpacity style={{ marginRight: 10 }} onPress={() => setModalVisible(true)}>
@@ -67,9 +69,7 @@ export default observer(function Header({ onLogout }) {
                         style={{ width: 30, height: 30, borderRadius: 15 }}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginRight: 10 }}>
-                    <Ionicons name="search" size={24} color="#fff" />
-                </TouchableOpacity>
+
             </View>
 
             {/* Full-screen account modal */}
