@@ -73,6 +73,74 @@
                 "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
                             "title": "Braid",
                             "type": "Puzzle"
+                },
+                {
+                    "id": "81157729",
+                    "imageUrl": "https://occ-0-2009-299.1.nflxso.net/dnm/api/v6/WNk1mr9x_Cd_2itp6pUM7-lXMJg/AAAABQ5X5kLD5yFFrY8oicAHFjDPvKHPA6dfvAqb3RbZnxEoOmEJK0KhItrl0i72S8mAZB1HaJBuLAIhjY8mOy8H_2IB16mjD27L1NN8FEm-ArmpJAOYU6bwbKB0tU5FEvDm2KMFsdFcomZSBcMFfdOWCDlQBa8K3ovK7RnvQoif1tGGRokOEHBAuzK5zNW2fxEeU7kmefcBHZ3lh1YnByRg6tp_3B_V884XEgX3DngVER5ihSWeA2wHh6eRG9kE-Yw4SutooxNk_8M6x68XAK9ZuQ7MqehU9A.jpg",
+                    "title": "The Woman in the Window",
+                    "type": "Action"
+                },
+                {
+                    "id": "81685896",
+                    "imageUrl": "https://www.justwatch.com/images/poster/176267694/s332/ride-along.webp",
+                    "title": "The Weekend Away",
+                    "type": "Arcade"
+                },
+                {
+                    "id": "81685892",
+                    "imageUrl": "https://www.justwatch.com/images/poster/176333515/s166/me-before-you.webp",
+                    "title": "Me Before You",
+                    "type": "Puzzle"
+                },
+                {
+                    "id": "81685893",
+                    "imageUrl": "https://www.justwatch.com/images/poster/321251216/s166/yek-number.webp",
+                    "title": "Yek Number",
+                    "type": "Action"
+                },
+                 {
+                    "id": "1",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                    "title": "Dead Cells: Netflix Edition",
+                    "type": "Action"
+                },
+                {
+                    "id": "8",
+                    "imageUrl": "https://cdn2.steamgriddb.com/grid/288da12c771014e02856de1075993bfe.png",
+                    "title": "GTA Vice City",
+                    "type": "Action"
+                },
+                {
+                    "id": "5",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQQcDhhT3e1DUow6g0_4qwopgNp7SlXCdu0lUEUsVkOIWO31cqxdLNL_opwXg-xVAEelLSrjpOAAHM7fDTyz-5h-jhQELzJG2faAEOEtTt-4NKcgkLre5Ep4dqwJE3-ZHPioqxe1w3MVDR8J8APA7m4wQ.jpg?r=01d",
+                    "title": "Dumb Ways to Survive",
+                    "type": "Adventure"
+                },
+                {
+                    "id": "2",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcIeF6n2wF0YVb_qZZQnxFsky2xLQEGMq1zxnK5EbjY-3tJVS8YOOdYUzRvrEgBH1NV_Nw761AOTWdfs3vPFpBpjNnpwA148Tj-l4q3e_cCXRoRxMTM17W9t2VsY7QS7M3nTyUB9vbeRZnurR5q4oREQ.jpg?r=af2",
+                    "title": "Bowling Ballers",
+                    "type": "Arcade"
+                },
+                {
+                    "id": "3",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
+                    "title": "Braid",
+                    "type": "Puzzle"
+                },
+                {
+                    "id": "4",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXnyh2jfpZQvwntLidUqGhMCdvfOmu70gDuCxW2m8zb0Pe2IgbGCPT__U9hZbGyHMTBTc1RxLouspr_bwbq79lmzcrtRxZNLrV2Hmt5PEbzUEvP-rPl3RHcS0rai2eImnN_yhRgu5mLhG5-cMhrPQakm.jpg?r=b5c",
+                    "title": "Country Friends",
+                    "type": "Simulation"
+                },
+                {
+                    "id": "11",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                            "title": "Dead Cells: Netflix Edition",
+                            "type": "Action"
+                
+                
                 }
     ]
 },
@@ -134,6 +202,36 @@
                 "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
                             "title": "Braid",
                             "type": "Puzzle"
+                },
+                 {
+                    "id": "21",
+                "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
+                            "title": "Braid",
+                            "type": "Puzzle"
+                },
+                {
+                    "id": "81157729",
+                    "imageUrl": "https://occ-0-2009-299.1.nflxso.net/dnm/api/v6/WNk1mr9x_Cd_2itp6pUM7-lXMJg/AAAABQ5X5kLD5yFFrY8oicAHFjDPvKHPA6dfvAqb3RbZnxEoOmEJK0KhItrl0i72S8mAZB1HaJBuLAIhjY8mOy8H_2IB16mjD27L1NN8FEm-ArmpJAOYU6bwbKB0tU5FEvDm2KMFsdFcomZSBcMFfdOWCDlQBa8K3ovK7RnvQoif1tGGRokOEHBAuzK5zNW2fxEeU7kmefcBHZ3lh1YnByRg6tp_3B_V884XEgX3DngVER5ihSWeA2wHh6eRG9kE-Yw4SutooxNk_8M6x68XAK9ZuQ7MqehU9A.jpg",
+                    "title": "The Woman in the Window",
+                    "type": "Action"
+                },
+                {
+                    "id": "81685896",
+                    "imageUrl": "https://www.justwatch.com/images/poster/176267694/s332/ride-along.webp",
+                    "title": "The Weekend Away",
+                    "type": "Arcade"
+                },
+                {
+                    "id": "81685892",
+                    "imageUrl": "https://www.justwatch.com/images/poster/176333515/s166/me-before-you.webp",
+                    "title": "Me Before You",
+                    "type": "Puzzle"
+                },
+                {
+                    "id": "81685893",
+                    "imageUrl": "https://www.justwatch.com/images/poster/321251216/s166/yek-number.webp",
+                    "title": "Yek Number",
+                    "type": "Action"
                 }
             ]
         },

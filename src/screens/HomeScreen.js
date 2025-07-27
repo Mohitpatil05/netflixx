@@ -10,8 +10,6 @@ import {
     Dimensions,
     StatusBar,
     StyleSheet,
-    Modal,
-    Pressable,
 } from 'react-native';
 import Video from 'react-native-video';
 import { observer } from 'mobx-react-lite';
@@ -327,43 +325,6 @@ export default observer(function HomeScreen({ navigation }) {
                 />
             </ScrollView>
 
-            {/* Fullscreen Video Modal */}
-            <Modal
-                visible={!!playingVideoUrl}
-                animationType="slide"
-                supportedOrientations={['landscape', 'portrait']}
-                onRequestClose={() => setPlayingVideoUrl(null)}
-                hardwareAccelerated
-                presentationStyle="fullScreen"
-            >
-                <View style={{ flex: 1, backgroundColor: 'black' }}>
-                    <TouchableOpacity
-                        style={{
-                            position: 'absolute',
-                            top: 40,
-                            right: 20,
-                            zIndex: 10,
-                            backgroundColor: 'rgba(0,0,0,0.5)',
-                            padding: 10,
-                            borderRadius: 20,
-                        }}
-                        onPress={() => setPlayingVideoUrl(null)}
-                    >
-                        <Ionicons name="close" size={30} color="white" />
-                    </TouchableOpacity>
-                    {playingVideoUrl && (
-                        <Video
-                            source={playingVideoUrl}
-                            style={{ flex: 1 }}
-                            controls
-                            fullscreen
-                            resizeMode="contain"
-                            paused={false}
-                            onError={(e) => console.log('Video error:', e)}
-                        />
-                    )}
-                </View>
-            </Modal>
         </View>
     );
 });
