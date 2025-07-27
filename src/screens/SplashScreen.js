@@ -5,25 +5,35 @@ import { userStore } from '../store/userStore';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function SplashScreen({ navigation }) {
-    const scaleAnim = useRef(new Animated.Value(1)).current; // initial scale 1
+    const scaleAnim = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
-        // Wait 1.2 sec without animation, then zoom fast
-        setTimeout(() => {
-            Animated.timing(scaleAnim, {
-                toValue: 500,          // Big zoom
-                duration: 2000,
-                easing: Easing.in(Easing.ease),
-                useNativeDriver: true,
-            }).start(() => {
-                // Navigate after zoom ends
-                if (userStore.isLoggedIn) {
-                    navigation.replace('Home');
+        const waitAndNavigate = async () => {
+            // Wait until userStore finishes loading user data
+            const checkHydrated = () => {
+                if (userStore.isHydrated) {
+                    // Start zoom animation
+                    Animated.timing(scaleAnim, {
+                        toValue: 500,
+                        duration: 2000,
+                        easing: Easing.in(Easing.ease),
+                        useNativeDriver: true,
+                    }).start(() => {
+                        if (userStore.isLoggedIn) {
+                            navigation.replace('Home');
+                        } else {
+                            navigation.replace('Login');
+                        }
+                    });
                 } else {
-                    navigation.replace('Login');
+                    requestAnimationFrame(checkHydrated); // Keep checking
                 }
-            });
-        }, 1200);
+            };
+
+            checkHydrated();
+        };
+
+        waitAndNavigate();
     }, []);
 
     return (
@@ -45,6 +55,7 @@ export default observer(function SplashScreen({ navigation }) {
         </View>
     );
 });
+
 
 const styles = StyleSheet.create({
     container: {

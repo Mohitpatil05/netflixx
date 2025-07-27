@@ -4,6 +4,7 @@ import { setItem, getItem, removeItem } from '../utils/storage';
 class UserStore {
     username = '';
     isLoggedIn = false;
+    isHydrated = false; // <-- NEW
 
     constructor() {
         makeAutoObservable(this);
@@ -16,6 +17,7 @@ class UserStore {
             this.username = data.username;
             this.isLoggedIn = true;
         }
+        this.isHydrated = true; // <-- Set after loading
     }
 
     async login(username, password) {
@@ -30,5 +32,6 @@ class UserStore {
         await removeItem('user');
     }
 }
+
 
 export const userStore = new UserStore();
