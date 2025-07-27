@@ -1,19 +1,11 @@
 import React from 'react';
-import { TextInput } from 'react-native';
-import Colors from '../constants/Colors';
+import { TextInput, StyleSheet } from 'react-native';
+import { styles } from './styles';
 
 export default function TextInputField({ placeholder, value, onChangeText, secureTextEntry }) {
     return (
         <TextInput
-            style={{
-                borderWidth: 1,
-                borderColor: '#555',
-                backgroundColor: '#111',
-                color: Colors.text,
-                padding: 10,
-                marginVertical: 10,
-                borderRadius: 6,
-            }}
+            style={styles.input}
             placeholder={placeholder}
             placeholderTextColor="#888"
             value={value}
@@ -22,3 +14,5 @@ export default function TextInputField({ placeholder, value, onChangeText, secur
         />
     );
 }
+
+

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Image, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
-import Colors from '../constants/Colors';
-import { userStore } from '../store/userStore';
+import { styles } from './styles';
+import { userStore } from '../../store/userStore';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function SplashScreen({ navigation }) {
@@ -45,7 +45,7 @@ export default observer(function SplashScreen({ navigation }) {
             />
 
             <Animated.Image
-                source={require('../assets/images/logo.png')}
+                source={require('../../assets/images/logo.png')}
                 style={[
                     styles.logo,
                     { transform: [{ scale: scaleAnim }] }
@@ -57,15 +57,4 @@ export default observer(function SplashScreen({ navigation }) {
 });
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    logo: {
-        width: 100,
-        height: 100,
-    },
-});
+

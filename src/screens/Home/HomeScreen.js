@@ -9,17 +9,17 @@ import {
     ActivityIndicator,
     Dimensions,
     StatusBar,
-    StyleSheet,
 } from 'react-native';
 import Video from 'react-native-video';
 import { observer } from 'mobx-react-lite';
-import { movieStore } from '../store/movieStore';
-import { userStore } from '../store/userStore';
-import Colors from '../constants/Colors';
-import Header from '../components/Header';
-import Card from '../components/Card';
+import { movieStore } from '../../store/movieStore';
+import { userStore } from '../../store/userStore';
+import Colors from '../../constants/Colors';
+import Header from '../../components/Header/Header';
+import Card from '../../components/Card/Card';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FastImage from 'react-native-fast-image';
+import { styles } from './styles';
 
 export default observer(function HomeScreen({ navigation }) {
     // Constants for pagination
@@ -37,23 +37,12 @@ export default observer(function HomeScreen({ navigation }) {
     const [rowItemsCount, setRowItemsCount] = useState({});
     const [loadingRows, setLoadingRows] = useState({});
     const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(false);
-
     // New state for video playing
     const [playingVideoUrl, setPlayingVideoUrl] = useState(null);
-
     const handleLogout = async () => {
         await userStore.logout();
         navigation.replace('Login');
     };
-
-    const sectionTitleStyle = {
-        fontSize: 18,
-        color: Colors.accent,
-        fontWeight: 'bold',
-        marginVertical: 10,
-        marginLeft: 10,
-    };
-
     // Render horizontal row cards with incremental loading
     const renderRow = (row) => {
         const currentCount = rowItemsCount[row.rowTitle] || HORIZONTAL_CARDS_TO_LOAD;
@@ -75,7 +64,7 @@ export default observer(function HomeScreen({ navigation }) {
 
         return (
             <View key={row.rowTitle}>
-                <Text style={sectionTitleStyle}>{row.rowTitle}</Text>
+                <Text style={styles.sectionTitle}>{row.rowTitle}</Text>
                 <FlatList
                     data={slicedMovies}
                     horizontal
@@ -92,20 +81,14 @@ export default observer(function HomeScreen({ navigation }) {
                                 />
                             );
                         }
-                        return <Card item={item} onPlayPress={() => setPlayingVideoUrl(require('../assets/videos/trailer.mp4'))} />;
+                        return <Card item={item} onPlayPress={() => setPlayingVideoUrl(require('../../assets/videos/trailer.mp4'))} />;
                     }}
                     keyExtractor={(item) => item.id}
-                    style={{ marginVertical: 10 }}
+                    style={styles.rowFlatList}
                     onEndReached={handleEndReached}
                     onEndReachedThreshold={0.7}
                     ListFooterComponent={loadingRows[row.rowTitle] ? (
-                        <View style={{
-                            height: 200,
-                            width: 50,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginLeft: 10,
-                        }}>
+                        <View style={styles.loadingFooter}>
                             <ActivityIndicator size="large" color={Colors.accent} />
                         </View>
                     ) : null}
@@ -140,77 +123,43 @@ export default observer(function HomeScreen({ navigation }) {
     };
 
     const renderGridItem = ({ item }) => (
-        <TouchableOpacity
-            style={{
-                flex: 1,
-                margin: 5,
-                borderRadius: 8,
-                overflow: 'hidden',
-            }}
-        >
+        <TouchableOpacity style={styles.gridItem}>
             <ImageBackground
                 source={{ uri: item.imageUrl }}
-                style={{ height: 200, width: itemWidth }}
+                style={styles.gridItemImage}
                 resizeMode="cover"
             >
-                <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)' }} />
+                <View style={styles.gridItemOverlay} />
             </ImageBackground>
         </TouchableOpacity>
     );
-
     return (
-        <View style={{ flex: 1, backgroundColor: Colors.background }}>
+        <View style={styles.container}>
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-
             <ScrollView onMomentumScrollEnd={loadMoreData} scrollEventThrottle={400}>
                 <Header onLogout={handleLogout} />
-
                 {/* HERO SECTION */}
                 {heroMovie && (
-                    <View
-                        style={{
-                            height: 500,
-                            marginBottom: 10,
-                            width: '90%',
-                            alignSelf: 'center',
-                            marginTop: 70,
-                            borderRadius: 16,
-                            overflow: 'hidden',
-                            backgroundColor: '#000',
-                        }}
-                    >
+                    <View style={styles.heroContainer}>
                         {isHeroVideoPlaying ? (
-                            <View style={{ flex: 1 }}>
+                            <View style={styles.heroVideoContainer}>
                                 <Video
-                                    source={require('../assets/videos/trailer.mp4')}
-                                    style={StyleSheet.absoluteFillObject}
+                                    source={require('../../assets/videos/trailer.mp4')}
+                                    style={styles.heroVideo}
                                     resizeMode="cover"
                                     paused={!isHeroVideoPlaying}
                                     onEnd={() => setIsHeroVideoPlaying(false)}
                                     repeat={false}
                                     controls={false}
                                 />
-
                                 {/* Button wrapper at bottom */}
-                                <View style={{
-                                    position: 'absolute',
-                                    bottom: 30,
-                                    width: '100%',
-                                    alignItems: 'center',
-                                }}>
+                                <View style={styles.heroButtonWrapper}>
                                     <TouchableOpacity
-                                        style={{
-                                            backgroundColor: '#fff',
-                                            paddingHorizontal: 20,
-                                            paddingVertical: 10,
-                                            borderRadius: 6,
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                        }}
+                                        style={styles.pauseButton}
                                         onPress={() => setIsHeroVideoPlaying(false)}
                                     >
                                         <Ionicons name="pause" size={20} color="#000" />
-                                        <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Pause</Text>
+                                        <Text style={styles.buttonText}>Pause</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -218,80 +167,38 @@ export default observer(function HomeScreen({ navigation }) {
                         ) : (
                             <ImageBackground
                                 source={{ uri: heroMovie.imageUrl }}
-                                style={{ flex: 1, justifyContent: 'flex-end' }}
+                                style={styles.heroImageBackground}
                                 resizeMode="cover"
                                 onLoadStart={() => setHeroLoading(true)}
                                 onLoadEnd={() => setHeroLoading(false)}
                             >
                                 {heroLoading && (
                                     <FastImage
-                                        source={require('../assets/images/logo.png')}
-                                        style={{ ...StyleSheet.absoluteFillObject }}
+                                        source={require('../../assets/images/logo.png')}
+                                        style={styles.heroLogoImage}
                                         resizeMode={FastImage.resizeMode.contain}
                                     />
                                 )}
-                                <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.4)' }} />
+                                <View style={styles.heroImageOverlay} />
 
-                                <View style={{ padding: 20, alignItems: 'center' }}>
-                                    <Text
-                                        style={{
-                                            color: '#fff',
-                                            fontSize: 24,
-                                            fontWeight: 'bold',
-                                            textAlign: 'center',
-                                            marginBottom: 10,
-                                        }}
-                                    >
+                                <View style={styles.heroContent}>
+                                    <Text style={styles.heroTitle}>
                                         {heroMovie.title}
                                     </Text>
-
-                                    <Text
-                                        style={{
-                                            color: '#fff',
-                                            fontSize: 14,
-                                            textAlign: 'center',
-                                            marginBottom: 20,
-                                        }}
-                                    >
+                                    <Text style={styles.heroTags}>
                                         {heroMovie.tags?.join(' • ')}
                                     </Text>
-
-                                    <View
-                                        style={{
-                                            flexDirection: 'row',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                        }}
-                                    >
+                                    <View style={styles.heroButtonsContainer}>
                                         <TouchableOpacity
-                                            style={{
-                                                backgroundColor: '#fff',
-                                                paddingHorizontal: 20,
-                                                paddingVertical: 10,
-                                                borderRadius: 6,
-                                                flexDirection: 'row',
-                                                alignItems: 'center',
-                                                marginHorizontal: 8,
-                                            }}
+                                            style={styles.playButton}
                                             onPress={() => setIsHeroVideoPlaying(true)}
                                         >
                                             <Ionicons name="play" size={20} color="#000" />
-                                            <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Play</Text>
+                                            <Text style={styles.buttonText}>Play</Text>
                                         </TouchableOpacity>
-
-                                        <TouchableOpacity
-                                            style={{
-                                                backgroundColor: 'rgba(68,68,68,0.9)',
-                                                paddingHorizontal: 20,
-                                                paddingVertical: 10,
-                                                borderRadius: 6,
-                                                flexDirection: 'row',
-                                                alignItems: 'center',
-                                                marginHorizontal: 8,
-                                            }}
-                                        >
+                                        <TouchableOpacity style={styles.myListButton}>
                                             <Ionicons name="add" size={20} color="#fff" />
-                                            <Text style={{ fontWeight: 'bold', marginLeft: 5, color: '#fff' }}>My List</Text>
+                                            <Text style={[styles.buttonText, styles.whiteText]}>My List</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -299,13 +206,10 @@ export default observer(function HomeScreen({ navigation }) {
                         )}
                     </View>
                 )}
-
-
                 {/* Render horizontal rows */}
                 {paginatedRows.map((row) => renderRow(row))}
-
                 {/* GRID SECTION */}
-                <Text style={[sectionTitleStyle, { marginTop: 20 }]}>All Movies</Text>
+                <Text style={styles.sectionTitleWithMargin}>All Movies</Text>
                 <FlatList
                     data={paginatedMovies}
                     keyExtractor={(item) => item.id}
@@ -317,7 +221,7 @@ export default observer(function HomeScreen({ navigation }) {
                     onEndReached={loadMoreData}
                     ListFooterComponent={
                         loadingMore ? (
-                            <View style={{ padding: 20 }}>
+                            <View style={styles.gridLoadingFooter}>
                                 <ActivityIndicator size="large" color={Colors.accent} />
                             </View>
                         ) : null
