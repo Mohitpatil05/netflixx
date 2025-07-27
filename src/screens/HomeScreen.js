@@ -10,7 +10,10 @@ import {
     Dimensions,
     StatusBar,
     StyleSheet,
+    Modal,
+    Pressable,
 } from 'react-native';
+import Video from 'react-native-video';
 import { observer } from 'mobx-react-lite';
 import { movieStore } from '../store/movieStore';
 import { userStore } from '../store/userStore';
@@ -21,23 +24,25 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FastImage from 'react-native-fast-image';
 
 export default observer(function HomeScreen({ navigation }) {
-    // Pagination constants
-    const COLUMNS = 2;          // Number of columns in vertical grid
-    const INITIAL_ROWS = 5;     // Number of rows to show initially
-    const MOVIES_PER_PAGE = COLUMNS * INITIAL_ROWS; // 10 cards initially (5 rows * 2 columns)
+    // Constants for pagination
+    const COLUMNS = 2;
+    const VERTICAL_ROWS_TO_LOAD = 3;
+    const HORIZONTAL_CARDS_TO_LOAD = 3;
+    const MOVIES_PER_PAGE = COLUMNS * VERTICAL_ROWS_TO_LOAD;
+    const ROWS_PER_PAGE = 5;
 
-    const ROWS_PER_PAGE = 5;      // For horizontal rows pagination
-    const CARDS_PER_ROW = 2;      // Cards per horizontal row
-
-    // States
+    // States for pagination & loading
     const [rowPage, setRowPage] = useState(1);
     const [moviePage, setMoviePage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
     const [heroLoading, setHeroLoading] = useState(true);
     const [rowItemsCount, setRowItemsCount] = useState({});
     const [loadingRows, setLoadingRows] = useState({});
+    const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(false);
 
-    // Logout handler
+    // New state for video playing
+    const [playingVideoUrl, setPlayingVideoUrl] = useState(null);
+
     const handleLogout = async () => {
         await userStore.logout();
         navigation.replace('Login');
@@ -51,9 +56,9 @@ export default observer(function HomeScreen({ navigation }) {
         marginLeft: 10,
     };
 
-    // Render each horizontal row of movies
+    // Render horizontal row cards with incremental loading
     const renderRow = (row) => {
-        const currentCount = rowItemsCount[row.rowTitle] || CARDS_PER_ROW;
+        const currentCount = rowItemsCount[row.rowTitle] || HORIZONTAL_CARDS_TO_LOAD;
         const slicedMovies = row.movies.slice(0, currentCount);
 
         const handleEndReached = () => {
@@ -64,7 +69,7 @@ export default observer(function HomeScreen({ navigation }) {
             setTimeout(() => {
                 setRowItemsCount(prev => ({
                     ...prev,
-                    [row.rowTitle]: Math.min(currentCount + CARDS_PER_ROW, row.movies.length),
+                    [row.rowTitle]: Math.min(currentCount + HORIZONTAL_CARDS_TO_LOAD, row.movies.length),
                 }));
                 setLoadingRows(prev => ({ ...prev, [row.rowTitle]: false }));
             }, 1500);
@@ -78,25 +83,31 @@ export default observer(function HomeScreen({ navigation }) {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item, index }) => {
+                        // Modify Card to accept onPlayPress callback
                         if (row.type === 'top_10') {
-                            return <Card item={item} isTop10 rank={index + 1} />;
+                            return (
+                                <Card
+                                    item={item}
+                                    isTop10
+                                    rank={index + 1}
+                                    onPlayPress={() => setPlayingVideoUrl()}
+                                />
+                            );
                         }
-                        return <Card item={item} />;
+                        return <Card item={item} onPlayPress={() => setPlayingVideoUrl(require('../assets/videos/trailer.mp4'))} />;
                     }}
                     keyExtractor={(item) => item.id}
                     style={{ marginVertical: 10 }}
                     onEndReached={handleEndReached}
                     onEndReachedThreshold={0.7}
                     ListFooterComponent={loadingRows[row.rowTitle] ? (
-                        <View
-                            style={{
-                                height: 200,  // match card height for vertical centering
-                                width: 50,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginLeft: 10,
-                            }}
-                        >
+                        <View style={{
+                            height: 200,
+                            width: 50,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginLeft: 10,
+                        }}>
                             <ActivityIndicator size="large" color={Colors.accent} />
                         </View>
                     ) : null}
@@ -105,46 +116,31 @@ export default observer(function HomeScreen({ navigation }) {
         );
     };
 
-    // Get hero movie (top left)
     const heroMovie = movieStore.movies[0]?.movies[0];
-
-    // Horizontal rows pagination
     const paginatedRows = movieStore.movies.slice(0, rowPage * ROWS_PER_PAGE);
 
-    // Flatten all movies to array for grid section
     const allMovies = useMemo(() => {
         return movieStore.movies.flatMap(row => row.movies);
     }, [movieStore.movies]);
 
-    // Dimensions and sizing for grid cards
     const screenWidth = Dimensions.get('window').width;
-    const itemWidth = screenWidth / COLUMNS - 15; // Margin adjustment
+    const itemWidth = screenWidth / COLUMNS - 15;
 
-    // Movies slice for vertical grid based on pagination
     const paginatedMovies = allMovies.slice(0, moviePage * MOVIES_PER_PAGE);
 
-    // Load more handler (load more rows & movies)
     const loadMoreData = () => {
         if (loadingMore) return;
-
         const canLoadMoreRows = paginatedRows.length < movieStore.movies.length;
         const canLoadMoreMovies = paginatedMovies.length < allMovies.length;
-
         if (!canLoadMoreRows && !canLoadMoreMovies) return;
-
         setLoadingMore(true);
         setTimeout(() => {
-            if (canLoadMoreRows) {
-                setRowPage(prev => prev + 1);
-            }
-            if (canLoadMoreMovies) {
-                setMoviePage(prev => prev + 1);
-            }
+            if (canLoadMoreRows) setRowPage(prev => prev + 1);
+            if (canLoadMoreMovies) setMoviePage(prev => prev + 1);
             setLoadingMore(false);
         }, 1500);
     };
 
-    // Render single movie card in vertical grid
     const renderGridItem = ({ item }) => (
         <TouchableOpacity
             style={{
@@ -185,54 +181,25 @@ export default observer(function HomeScreen({ navigation }) {
                             backgroundColor: '#000',
                         }}
                     >
-                        {heroLoading && (
-                            <FastImage
-                                source={require('../assets/images/logo.png')}
-                                style={{ ...StyleSheet.absoluteFillObject, width: '100%', height: '100%' }}
-                                resizeMode={FastImage.resizeMode.contain}
-                            />
-                        )}
+                        {isHeroVideoPlaying ? (
+                            <View style={{ flex: 1 }}>
+                                <Video
+                                    source={require('../assets/videos/trailer.mp4')}
+                                    style={StyleSheet.absoluteFillObject}
+                                    resizeMode="cover"
+                                    paused={!isHeroVideoPlaying}
+                                    onEnd={() => setIsHeroVideoPlaying(false)}
+                                    repeat={false}
+                                    controls={false}
+                                />
 
-                        <ImageBackground
-                            source={{ uri: heroMovie.imageUrl }}
-                            style={{ flex: 1, justifyContent: 'flex-end' }}
-                            resizeMode="cover"
-                            onLoadStart={() => setHeroLoading(true)}
-                            onLoadEnd={() => setHeroLoading(false)}
-                        >
-                            <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.4)' }} />
-
-                            <View style={{ padding: 20, alignItems: 'center' }}>
-                                <Text
-                                    style={{
-                                        color: '#fff',
-                                        fontSize: 24,
-                                        fontWeight: 'bold',
-                                        textAlign: 'center',
-                                        marginBottom: 10,
-                                    }}
-                                >
-                                    {heroMovie.title}
-                                </Text>
-
-                                <Text
-                                    style={{
-                                        color: '#fff',
-                                        fontSize: 14,
-                                        textAlign: 'center',
-                                        marginBottom: 20,
-                                    }}
-                                >
-                                    {heroMovie.tags?.join(' • ')}
-                                </Text>
-
-                                <View
-                                    style={{
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
+                                {/* Button wrapper at bottom */}
+                                <View style={{
+                                    position: 'absolute',
+                                    bottom: 30,
+                                    width: '100%',
+                                    alignItems: 'center',
+                                }}>
                                     <TouchableOpacity
                                         style={{
                                             backgroundColor: '#fff',
@@ -241,34 +208,102 @@ export default observer(function HomeScreen({ navigation }) {
                                             borderRadius: 6,
                                             flexDirection: 'row',
                                             alignItems: 'center',
-                                            marginHorizontal: 8,
                                         }}
+                                        onPress={() => setIsHeroVideoPlaying(false)}
                                     >
-                                        <Ionicons name="play" size={20} color="#000" />
-                                        <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Play</Text>
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity
-                                        style={{
-                                            backgroundColor: 'rgba(68,68,68,0.9)',
-                                            paddingHorizontal: 20,
-                                            paddingVertical: 10,
-                                            borderRadius: 6,
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            marginHorizontal: 8,
-                                        }}
-                                    >
-                                        <Ionicons name="add" size={20} color="#fff" />
-                                        <Text style={{ fontWeight: 'bold', marginLeft: 5, color: '#fff' }}>My List</Text>
+                                        <Ionicons name="pause" size={20} color="#000" />
+                                        <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Pause</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                        </ImageBackground>
+
+                        ) : (
+                            <ImageBackground
+                                source={{ uri: heroMovie.imageUrl }}
+                                style={{ flex: 1, justifyContent: 'flex-end' }}
+                                resizeMode="cover"
+                                onLoadStart={() => setHeroLoading(true)}
+                                onLoadEnd={() => setHeroLoading(false)}
+                            >
+                                {heroLoading && (
+                                    <FastImage
+                                        source={require('../assets/images/logo.png')}
+                                        style={{ ...StyleSheet.absoluteFillObject }}
+                                        resizeMode={FastImage.resizeMode.contain}
+                                    />
+                                )}
+                                <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.4)' }} />
+
+                                <View style={{ padding: 20, alignItems: 'center' }}>
+                                    <Text
+                                        style={{
+                                            color: '#fff',
+                                            fontSize: 24,
+                                            fontWeight: 'bold',
+                                            textAlign: 'center',
+                                            marginBottom: 10,
+                                        }}
+                                    >
+                                        {heroMovie.title}
+                                    </Text>
+
+                                    <Text
+                                        style={{
+                                            color: '#fff',
+                                            fontSize: 14,
+                                            textAlign: 'center',
+                                            marginBottom: 20,
+                                        }}
+                                    >
+                                        {heroMovie.tags?.join(' • ')}
+                                    </Text>
+
+                                    <View
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <TouchableOpacity
+                                            style={{
+                                                backgroundColor: '#fff',
+                                                paddingHorizontal: 20,
+                                                paddingVertical: 10,
+                                                borderRadius: 6,
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                marginHorizontal: 8,
+                                            }}
+                                            onPress={() => setIsHeroVideoPlaying(true)}
+                                        >
+                                            <Ionicons name="play" size={20} color="#000" />
+                                            <Text style={{ fontWeight: 'bold', marginLeft: 5 }}>Play</Text>
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity
+                                            style={{
+                                                backgroundColor: 'rgba(68,68,68,0.9)',
+                                                paddingHorizontal: 20,
+                                                paddingVertical: 10,
+                                                borderRadius: 6,
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                marginHorizontal: 8,
+                                            }}
+                                        >
+                                            <Ionicons name="add" size={20} color="#fff" />
+                                            <Text style={{ fontWeight: 'bold', marginLeft: 5, color: '#fff' }}>My List</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </ImageBackground>
+                        )}
                     </View>
                 )}
 
-                {/* Render horizontal rows with pagination */}
+
+                {/* Render horizontal rows */}
                 {paginatedRows.map((row) => renderRow(row))}
 
                 {/* GRID SECTION */}
@@ -279,7 +314,7 @@ export default observer(function HomeScreen({ navigation }) {
                     renderItem={renderGridItem}
                     numColumns={COLUMNS}
                     scrollEnabled={false}
-                    initialNumToRender={MOVIES_PER_PAGE} // initial 10 cards
+                    initialNumToRender={MOVIES_PER_PAGE}
                     onEndReachedThreshold={0.5}
                     onEndReached={loadMoreData}
                     ListFooterComponent={
@@ -291,6 +326,44 @@ export default observer(function HomeScreen({ navigation }) {
                     }
                 />
             </ScrollView>
+
+            {/* Fullscreen Video Modal */}
+            <Modal
+                visible={!!playingVideoUrl}
+                animationType="slide"
+                supportedOrientations={['landscape', 'portrait']}
+                onRequestClose={() => setPlayingVideoUrl(null)}
+                hardwareAccelerated
+                presentationStyle="fullScreen"
+            >
+                <View style={{ flex: 1, backgroundColor: 'black' }}>
+                    <TouchableOpacity
+                        style={{
+                            position: 'absolute',
+                            top: 40,
+                            right: 20,
+                            zIndex: 10,
+                            backgroundColor: 'rgba(0,0,0,0.5)',
+                            padding: 10,
+                            borderRadius: 20,
+                        }}
+                        onPress={() => setPlayingVideoUrl(null)}
+                    >
+                        <Ionicons name="close" size={30} color="white" />
+                    </TouchableOpacity>
+                    {playingVideoUrl && (
+                        <Video
+                            source={playingVideoUrl}
+                            style={{ flex: 1 }}
+                            controls
+                            fullscreen
+                            resizeMode="contain"
+                            paused={false}
+                            onError={(e) => console.log('Video error:', e)}
+                        />
+                    )}
+                </View>
+            </Modal>
         </View>
     );
 });

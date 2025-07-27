@@ -3,38 +3,77 @@
         {
     "rowTitle": "Continue Watching For You",
     "movies": [
-        {
-            "id": "11",
-            "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                {
+                    "id": "11",
+                  
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                            "title": "Dead Cells: Netflix Edition",
+                            "type": "Action"
+                
+                
+                },
+                {
+                    "id": "12",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcIeF6n2wF0YVb_qZZQnxFsky2xLQEGMq1zxnK5EbjY-3tJVS8YOOdYUzRvrEgBH1NV_Nw761AOTWdfs3vPFpBpjNnpwA148Tj-l4q3e_cCXRoRxMTM17W9t2VsY7QS7M3nTyUB9vbeRZnurR5q4oREQ.jpg?r=af2",
+                            "title": "Bowling Ballers",
+                            "type": "Arcade"
+                },
+                {
+                    "id": "13",
+                "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
+                            "title": "Braid",
+                            "type": "Puzzle"
+                },
+                {
+                    "id": "14",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXnyh2jfpZQvwntLidUqGhMCdvfOmu70gDuCxW2m8zb0Pe2IgbGCPT__U9hZbGyHMTBTc1RxLouspr_bwbq79lmzcrtRxZNLrV2Hmt5PEbzUEvP-rPl3RHcS0rai2eImnN_yhRgu5mLhG5-cMhrPQakm.jpg?r=b5c",
+                            "title": "Country Friends",
+                            "type": "Simulation"
+                },
+                {
+                    "id": "15",
+                            "imageUrl": "https://m.media-amazon.com/images/I/61y3DfBfGdL._AC_UF894,1000_QL80_.jpg",
+                            "title": "Oppenheimer",
+                    "type": "Mystery"
+                },
+                 {
+                    "id": "16",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
                     "title": "Dead Cells: Netflix Edition",
                     "type": "Action"
-           
-         
-        },
-        {
-            "id": "12",
-              "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcIeF6n2wF0YVb_qZZQnxFsky2xLQEGMq1zxnK5EbjY-3tJVS8YOOdYUzRvrEgBH1NV_Nw761AOTWdfs3vPFpBpjNnpwA148Tj-l4q3e_cCXRoRxMTM17W9t2VsY7QS7M3nTyUB9vbeRZnurR5q4oREQ.jpg?r=af2",
-                    "title": "Bowling Ballers",
-                    "type": "Arcade"
-        },
-        {
-            "id": "13",
-         "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
-                    "title": "Braid",
-                    "type": "Puzzle"
-        },
-        {
-            "id": "14",
-            "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXnyh2jfpZQvwntLidUqGhMCdvfOmu70gDuCxW2m8zb0Pe2IgbGCPT__U9hZbGyHMTBTc1RxLouspr_bwbq79lmzcrtRxZNLrV2Hmt5PEbzUEvP-rPl3RHcS0rai2eImnN_yhRgu5mLhG5-cMhrPQakm.jpg?r=b5c",
-                    "title": "Country Friends",
-                    "type": "Simulation"
-        },
-        {
-            "id": "15",
-                    "imageUrl": "https://m.media-amazon.com/images/I/61y3DfBfGdL._AC_UF894,1000_QL80_.jpg",
-                    "title": "Oppenheimer",
-            "type": "Mystery"
-        }
+                },
+                {
+                    "id": "17",
+                    "imageUrl": "https://cdn2.steamgriddb.com/grid/288da12c771014e02856de1075993bfe.png",
+                    "title": "GTA Vice City",
+                    "type": "Action"
+                },
+                {
+                    "id": "18",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQQcDhhT3e1DUow6g0_4qwopgNp7SlXCdu0lUEUsVkOIWO31cqxdLNL_opwXg-xVAEelLSrjpOAAHM7fDTyz-5h-jhQELzJG2faAEOEtTt-4NKcgkLre5Ep4dqwJE3-ZHPioqxe1w3MVDR8J8APA7m4wQ.jpg?r=01d",
+                    "title": "Dumb Ways to Survive",
+                    "type": "Adventure"
+                },
+                {
+                    "id": "19",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                            "title": "Dead Cells: Netflix Edition",
+                            "type": "Action"
+                
+                
+                },
+                {
+                    "id": "20",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcIeF6n2wF0YVb_qZZQnxFsky2xLQEGMq1zxnK5EbjY-3tJVS8YOOdYUzRvrEgBH1NV_Nw761AOTWdfs3vPFpBpjNnpwA148Tj-l4q3e_cCXRoRxMTM17W9t2VsY7QS7M3nTyUB9vbeRZnurR5q4oREQ.jpg?r=af2",
+                            "title": "Bowling Ballers",
+                            "type": "Arcade"
+                },
+                {
+                    "id": "21",
+                "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
+                            "title": "Braid",
+                            "type": "Puzzle"
+                }
     ]
 },
         {
@@ -75,6 +114,26 @@
                     "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXnyh2jfpZQvwntLidUqGhMCdvfOmu70gDuCxW2m8zb0Pe2IgbGCPT__U9hZbGyHMTBTc1RxLouspr_bwbq79lmzcrtRxZNLrV2Hmt5PEbzUEvP-rPl3RHcS0rai2eImnN_yhRgu5mLhG5-cMhrPQakm.jpg?r=b5c",
                     "title": "Country Friends",
                     "type": "Simulation"
+                },
+                {
+                    "id": "11",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQXlHfX_1WN1bSiZv4jXieBsZbXRLNIUU9BPzv0Cohep2F2pmqrMzmWwRp7anXyBLRGhrBKMOuoAZoj9v8Si3-mJ6o2-5bc6o2YZtsJSIgpOiM4gcLAETYcGsppaorpaRaXWzgZBX5ftLz-15gi1mBNcD.jpg?r=77f",
+                            "title": "Dead Cells: Netflix Edition",
+                            "type": "Action"
+                
+                
+                },
+                {
+                    "id": "12",
+                    "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQcIeF6n2wF0YVb_qZZQnxFsky2xLQEGMq1zxnK5EbjY-3tJVS8YOOdYUzRvrEgBH1NV_Nw761AOTWdfs3vPFpBpjNnpwA148Tj-l4q3e_cCXRoRxMTM17W9t2VsY7QS7M3nTyUB9vbeRZnurR5q4oREQ.jpg?r=af2",
+                            "title": "Bowling Ballers",
+                            "type": "Arcade"
+                },
+                {
+                    "id": "13",
+                "imageUrl": "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQSfHSN4chf1cmF68hhmMu3hA76r-h-O1OB1-cjSZh7BJsHPpTiGnPe6N8ywi9jVdR5mpXFbD9_aA49IfZCZ9YYowfGtTs_jHDC7YnRlrscX67sFLyokqn8PHPd-QGDx_VoQVbj15XUQsuDSDpuULeDSj.jpg?r=1e8",
+                            "title": "Braid",
+                            "type": "Puzzle"
                 }
             ]
         },
@@ -287,6 +346,26 @@
                 {
                     "id": "10-5",
                     "imageUrl": "https://flixpatrol.com/runtime/cache/files/posters/5/w350/5prgsfk28eapmhr247mhzp95upa.webp"
+                },
+                 {
+                    "id": "10-6",
+                    "imageUrl": "https://occ-0-7-6.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABV6lHX-lQXGcZoMe43bP1tntkVShSfqKbSExIcHN7r5zxkEOMfBzxDkQcCNchr3Wi6OMLxdSGsrbY3FMFO4YqOAp9aYY1UHncQ15zDZEwX6bduM_0aNhpDE8ilfYuCODqVLB.jpg?r=8a8"
+                },
+                {
+                    "id": "10-7",
+                    "imageUrl": "https://occ-0-7-6.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABew0ZNQKT8CCaiRRdG7jyMnbJphhGEAwCzaKB5fsslG1jE9_xnY8WkBKpL0OHHEy2xhWcpNxlqSFYf-OYBzGTECg78wzm6AEByAdWej0RLf1dvfjtqipkSzEp15frlQWxoWd.jpg?r=78e"
+                },
+                {
+                    "id": "10-8",
+                    "imageUrl": "https://occ-0-7-6.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABTQNS1iBZYCkgcpBGyIKp2t3_M1ZIDW8eJ4Ilw7VJxENo8J5HPrzxJMjpyq_6BgUSvUTHwk6Q_CcBITIl0meM2MxxKnM4SLrKOc.jpg?r=5cd"
+                },
+                {
+                    "id": "10-9",
+                    "imageUrl": "https://occ-0-7-6.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABV3tpCvjif9Wh0rqkhJqOwiSsTkvpVi86GUGXLd95PzGgIaaT-Yy6diDu9YAIQwdjD5u9tYbWlzTeoSSiy1Qvlr12KHeGaYx3Gs.jpg?r=49b"
+                },
+                {
+                    "id": "10-10",
+                    "imageUrl": "https://occ-0-7-6.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABY_mu7u0cdzcxm6fu6BK-UOoqQnpUz66R5Q_AcygDetu2nNZRalw84AefjIhQbTS4_QSzqOdbSClMJXch4dbZGDhJ9sMLgiCyEY.jpg?r=db5"
                 }
             ]
         },
