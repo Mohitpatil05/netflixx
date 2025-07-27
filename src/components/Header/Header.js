@@ -79,7 +79,11 @@ export default observer(function Header({ onLogout }) {
                         {menuButton('My List', () => { })}
                         {menuButton('Downloads', () => { })}
                         {menuButton('Help Center', () => { })}
-                        {menuButton('Logout', () => setLogoutConfirmVisible(true), Colors.accent)}
+                        {menuButton('Logout', () => {
+                            setModalVisible(false);
+                            setLogoutConfirmVisible(true);
+                        }, Colors.accent)}
+
                         {menuButton('Close', () => setModalVisible(false), '#444')}
                     </ScrollView>
                 </View>
